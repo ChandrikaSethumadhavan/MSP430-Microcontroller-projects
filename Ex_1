@@ -1,0 +1,122 @@
+// Chandrika Sethumadhavan Matriculation number: 5776354
+
+#include <msp430.h>       /************INCREASE COMMENTS */
+#include<templateEMP.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+
+// All defined macros according to the task
+#define pb5 BIT3
+#define pb6 BIT4
+#define Red  BIT5
+#define Green BIT6
+#define Blue  BIT0
+#define Yellow BIT7
+
+//Function prototype definitions
+void stateTwoFunction();
+void configureButtonInputs();
+void configureLEDOutputs();
+int checkButtonStatus(int btn, int DBTime);
+void mainLedCode(uint8_t PB5_2, uint8_t PB6_2);
+
+//Declaring variables
+int PB5_2, PB6_2;
+
+
+// Task b state 2 just for red and yellow led
+void stateTwoFunction() {
+
+    P1OUT = (P1OUT | Red) & ~Yellow;
+    __delay_cycles(250000); // Delay for 250 ms and 1Mhz !
+    P1OUT |= (P1OUT | Yellow) & ~Red;
+}
+
+void configureButtonInputs() {                                      //always alter this part to change buttons for further exercises
+    P1DIR &= ~(pb5 | pb6);
+    P1OUT |= (pb5 | pb6);
+    P1REN |= (pb5 | pb6);
+}
+
+void configureLEDOutputs() {
+    P1DIR |= Red;                            //always alter this part to add or remove LEDs for further exercises
+    P1DIR |= Green;
+    P1DIR |= Blue;
+    P1DIR |= Yellow;
+}
+
+ int checkButtonStatus(int btn, int DBTime) {        //Always use this function to use as a debounce for a button/ buttons
+     int pressCount = 0;
+     int checkIterations = 0;
+
+     while (checkIterations < DBTime) {
+         if (!(P1IN & btn)) {
+             pressCount++;
+         }
+
+         // Busy wait for 1 ms
+         volatile int waitCount;
+         waitCount = 1000; // Adjust this value based on your clock speed for ~1 ms delay
+         while (waitCount--); // Wait until count reaches zero
+
+         checkIterations++; // Increment the check iterations
+     }
+
+     // Check if the button was pressed more than half the time
+     int isPressed = (pressCount*2) > DBTime;
+     return isPressed; //
+ }
+
+
+void durationOfDelay(unsigned int duration) {
+    volatile unsigned int count = duration; // Set initial count
+
+    // Loop until count reaches zero
+    while (count != 0) {
+        count--; // Decrement count
+    }
+}
+
+
+void main()
+{
+    initMSP();
+    WDTCTL = WDTPW | WDTHOLD;   // Stop watchdog timer                   //************************* do we need this??????? */
+    configureButtonInputs();
+    configureLEDOutputs();
+
+    //P1SEL &= ~(BIT0 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7);  // Clear bits for specific pins to make them work as gpio pins // selective clearing // see if needed
+
+
+
+   while(1)
+   {
+
+       // Debounce button states and update both states
+       PB5_2 = checkButtonStatus(pb5,30); // Get the updated state for pb5
+       PB6_2 = checkButtonStatus(pb6,30); // Get the updated state for pb6
+
+       P1OUT &= ~(Red | Green | Blue | Yellow); // All LEDs off at start
+       mainLedCode(PB5_2,PB6_2);
+       durationOfDelay(25);
+   }
+
+}
+void mainLedCode(uint8_t PB5_2, uint8_t PB6_2) {
+    if (!PB5_2 && !PB6_2) { // Both buttons are unpressed
+        P1OUT |= Yellow; // Turn on Yellow LED
+    }
+    else if (PB5_2 && !PB6_2){
+
+        stateTwoFunction(); // Call the function to handle LED states
+    }
+    else if (!PB5_2 && PB6_2) { // Button 6 pressed
+        P1OUT |= Green; // Turn on Green LED
+        P1OUT |= Yellow; // Turn on Yellow LED
+    }
+    else if (PB5_2 && PB6_2) { // Both buttons pressed
+        P1OUT |= Blue; // Turn on Blue LED
+        P1OUT |= Yellow; // Turn on Yellow LED
+    }
+}
