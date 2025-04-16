@@ -1,14 +1,10 @@
 /***************************************************************************//**
  * @file                    main.c
  * @author                  Chandrika Sethumadhavan
- * @date                    06/12/2024
- * @matriculation number    5776354
- * @e-mail contact          chandrikasethu06@gmail.com
  * @Exercise number         5 Watchdog Timers & Timer modules
- *
- * Please check feedback.txt for @brief
+ 
 
- * All tasks have been implemented in this code and details about working mentioned in feedback.txt
+ * All tasks have been implemented in this code
 
 
  * All Pin Connections:
