@@ -1,13 +1,6 @@
 /**************************************************************************************************************************************************
-* Name : Chandrika Sethumadhavan | Matriculation nr: 5776354                                                                                       *
+* Name : Chandrika Sethumadhavan                                                                                    *
 * Exercise 1 : Digital I/O and Interrupts                                                                                                          *
-* Description: 1. I was not sure if the state 1 should work only once per press or keep working with a certain delay between the lighting up part  *
-*                 since I could not find more information about it on the exercise sheet,                                                           *
-*                 so I have enabled it to look like it is turning on with a delay more than once per press.                                        *
-*              2. The polling was a little hard for me to judge if it was working properly because of my hardware buttons being very hard to press.*
-*                 Because of this, I have made the button hard to press.                                                                           *
-*                 Please press the button harder. :)
-*              3. uncomment line 52 for polling
 *
 *Connections:   P1.3 connected to PB5 pin
 *               P1.4 connected to PB6 pin
