@@ -1,14 +1,6 @@
 /*************************************************************************************************************************************************************************
  * @file                    main.c
  * @author                  Chandrika Sethumadhavan
- * @date                    17/01/2025
- * @matriculation number    5776354
- * @e-mail contact          chandrikasethu06@gmail.com
- * @Exercise number         7 Project implementation
- *
- * Please check feedback.txt for @brief
-
- * All tasks have been implemented in this code.
 
 
  * All Pin Connections:
