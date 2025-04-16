@@ -1,12 +1,9 @@
 /***************************************************************************//**
  * @file                    main.c
  * @author                  Chandrika Sethumadhavan
- * @date                    22/11/2024
- * @matriculation number    5776354
- * @e-mail contact          chandrikasethu06@gmail.com
  * @Exercise number         3 Pulse Width Modulation
  *
- * Please check feedback.txt for @brief
+ * 
 
 
  * All Pin Connections:
