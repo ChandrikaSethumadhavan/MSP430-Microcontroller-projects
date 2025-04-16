@@ -1,6 +1,4 @@
 //// Name: Chandrika Sethumadhavan
-//// Matriculation number : 5776354
-//// Exercise : 2
 
 //********************************************************************************************************************//
 ////bonus task implemented
