@@ -1,9 +1,6 @@
 /******************************************************************************************************
  * @file                    main.c
  * @author                  Chandrika Sethumadhavan
- * @date                    28/11/2024
- * @matriculation number    5776354
- * @e-mail contact          chandrikasethu06@gmail.com
  * @Exercise number         4 Dynamic Circuit Configuration
  *
 
